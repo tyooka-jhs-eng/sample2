@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "nature", "meaning": "自然", "example": "I love walking in nature." },
+  { "id": "word2", "word": "forest", "meaning": "森", "example": "We saw many animals in the forest." },
+  { "id": "word3", "word": "mountain", "meaning": "山", "example": "Mt. Fuji is a famous mountain." },
+  { "id": "word4", "word": "river", "meaning": "川", "example": "The river flows through the town." },
+  { "id": "word5", "word": "sea", "meaning": "海", "example": "We swam in the sea." },
+  { "id": "word6", "word": "lake", "meaning": "湖", "example": "The lake is very quiet." },
+  { "id": "word7", "word": "sky", "meaning": "空", "example": "The sky is blue today." },
+  { "id": "word8", "word": "sun", "meaning": "太陽", "example": "The sun is shining brightly." },
+  { "id": "word9", "word": "moon", "meaning": "月", "example": "The moon looks beautiful tonight." },
+  { "id": "word10", "word": "star", "meaning": "星", "example": "I saw many stars in the sky." },
+  { "id": "word11", "word": "flower", "meaning": "花", "example": "She gave me a red flower." },
+  { "id": "word12", "word": "tree", "meaning": "木", "example": "There is a big tree in the park." },
+  { "id": "word13", "word": "grass", "meaning": "草", "example": "The grass is green and soft." },
+  { "id": "word14", "word": "animal", "meaning": "動物", "example": "The zoo has many animals." },
+  { "id": "word15", "word": "bird", "meaning": "鳥", "example": "I saw a beautiful bird." },
+  { "id": "word16", "word": "insect", "meaning": "虫", "example": "There are many insects in summer." },
+  { "id": "word17", "word": "weather", "meaning": "天気", "example": "The weather is nice today." },
+  { "id": "word18", "word": "climate", "meaning": "気候", "example": "Japan has a mild climate." },
+  { "id": "word19", "word": "air", "meaning": "空気", "example": "The air is clean in the mountains." },
+  { "id": "word20", "word": "pollution", "meaning": "汚染", "example": "We must stop air pollution." }
+]

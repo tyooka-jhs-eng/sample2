@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "happiness", "meaning": "幸福", "example": "Happiness is important in life." },
+  { "id": "word2", "word": "sadness", "meaning": "悲しみ", "example": "He felt deep sadness after the movie." },
+  { "id": "word3", "word": "anger", "meaning": "怒り", "example": "She couldn't hide her anger." },
+  { "id": "word4", "word": "fear", "meaning": "恐れ", "example": "He showed no fear during the test." },
+  { "id": "word5", "word": "surprise", "meaning": "驚き", "example": "Her gift was a big surprise." },
+  { "id": "word6", "word": "love", "meaning": "愛", "example": "Love brings people together." },
+  { "id": "word7", "word": "hope", "meaning": "希望", "example": "We have hope for the future." },
+  { "id": "word8", "word": "dream", "meaning": "夢", "example": "My dream is to become a doctor." },
+  { "id": "word9", "word": "confidence", "meaning": "自信", "example": "She spoke with confidence." },
+  { "id": "word10", "word": "courage", "meaning": "勇気", "example": "He showed great courage." },
+  { "id": "word11", "word": "kindness", "meaning": "親切", "example": "Kindness makes the world better." },
+  { "id": "word12", "word": "honesty", "meaning": "正直", "example": "Honesty is a good quality." },
+  { "id": "word13", "word": "patience", "meaning": "忍耐", "example": "Patience is needed for success." },
+  { "id": "word14", "word": "friendship", "meaning": "友情", "example": "Their friendship is strong." },
+  { "id": "word15", "word": "respect", "meaning": "尊敬", "example": "We should show respect to others." },
+  { "id": "word16", "word": "trust", "meaning": "信頼", "example": "Trust is important in relationships." },
+  { "id": "word17", "word": "shyness", "meaning": "内気", "example": "His shyness made him quiet." },
+  { "id": "word18", "word": "humor", "meaning": "ユーモア", "example": "She has a good sense of humor." },
+  { "id": "word19", "word": "pride", "meaning": "誇り", "example": "He felt pride in his work." },
+  { "id": "word20", "word": "jealousy", "meaning": "ねたみ", "example": "Jealousy can hurt friendships." }
+]

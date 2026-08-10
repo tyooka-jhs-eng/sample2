@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>レストラン注文練習（入力選択付き）</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .ai-side, .student-side {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .ai-side {
+      background-color: #fff;
+      border-right: 1px solid #ccc;
+      text-align: left;
+    }
+
+    .student-side {
+      background-color: #fefefe;
+      text-align: right;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 60%;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin-top: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    #aiMessage, #feedback, #speechResult {
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    #typingArea, #speechArea {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="ai-side">
+      <h2>👩‍🍳 店員（AI）</h2>
+      <p id="aiMessage">Welcome to Café Copilot! What would you like to order today?</p>
+      <button onclick="readAIMessage()">🔊 店員の声を聞く</button>
+    </div>
+    <div class="student-side">
+      <h2>🧑‍🎓 生徒の入力</h2>
+
+      <!-- 入力モード選択 -->
+      <div>
+        <button onclick="switchMode('typing')">⌨️ キー入力</button>
+        <button onclick="switchMode('speech')">🎤 音声入力</button>
+      </div>
+
+      <!-- キー入力エリア -->
+      <div id="typingArea">
+        <input type="text" id="studentInput" placeholder="I’d like a coffee and cake, please." />
+        <button onclick="submitOrder()">注文する</button>
+      </div>
+
+      <!-- 音声入力エリア -->
+      <div id="speechArea" style="display: none;">
+        <button onclick="startSpeech()">🎙️ 話す</button>
+        <p id="speechResult">（音声認識結果がここに表示されます）</p>
+      </div>
+
+      <p id="feedback"></p>
+    </div>
+  </div>
+
+
+
+  <script>
+    let mode = 'typing';
+
+    function switchMode(selected) {
+      mode = selected;
+      document.getElementById('typingArea').style.display = selected === 'typing' ? 'block' : 'none';
+      document.getElementById('speechArea').style.display = selected === 'speech' ? 'block' : 'none';
+      document.getElementById('feedback').textContent = '';
+      document.getElementById('speechResult').textContent = '';
+    }
+
+    function submitOrder() {
+      const input = document.getElementById("studentInput").value.trim();
+      processInput(input);
+    }
+
+    function startSpeech() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.start();
+
+      recognition.onresult = function(event) {
+        const result = event.results[0][0].transcript;
+        document.getElementById("speechResult").textContent = `🎧 音声認識結果：${result}`;
+        processInput(result);
+      };
+
+      recognition.onerror = function(e) {
+        document.getElementById("speechResult").textContent = '⚠️ 音声認識に失敗しました。もう一度お試しください。';
+      };
+    }
+
+    function processInput(input) {
+  const aiMessage = document.getElementById("aiMessage");
+  const feedback = document.getElementById("feedback");
+
+  if (input === "") {
+    feedback.textContent = "何か注文してくださいね！";
+    return;
+  }
+
+  const lowerInput = input.toLowerCase();
+
+  // 食べ物・飲み物のキーワード一覧
+  const menuKeywords = [
+    'coffee', 'cake', 'sandwich', 'pizza', 'curry', 'juice',
+    'milk', 'tea', 'cola', 'hamburger', 'salad', 'soup', 'bread', 'rice', 'water'
+  ];
+
+  // キーワードが含まれているかを確認
+  const isMenuItem = menuKeywords.some(keyword => lowerInput.includes(keyword));
+
+  if (!isMenuItem) {
+    feedback.textContent = "それは食べ物ではありません。もう一度注文を入力してください🍽️";
+    return;
+  }
+
+  feedback.textContent = `「${input}」という注文を受け付けました。`;
+
+  // 食べ物に応じたAI応答
+  if (lowerInput.includes("coffee")) {
+    aiMessage.textContent = "Certainly! One coffee coming right up. Would you like anything else?";
+  } else if (lowerInput.includes("cake")) {
+    aiMessage.textContent = "Great choice! The cake is fresh today. Anything to drink?";
+  } else {
+    aiMessage.textContent = "Thank you! I'll prepare your order shortly.";
+  }
+}
+
+function readAIMessage() {
+  const aiText = document.getElementById("aiMessage").textContent;
+  const utterance = new SpeechSynthesisUtterance(aiText);
+  utterance.lang = 'en-US'; // 発音を英語に設定
+  window.speechSynthesis.speak(utterance);
+}
+
+ </script>
+
+
+
+<!-- メニューに戻るためのボタン -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アプリ画面</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome（アイコン用） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .back-to-menu {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      border-radius: 30px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .back-to-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+    }
+
+    .back-to-menu i {
+      font-size: 1.2rem;
+      color: #4a90e2;
+    }
+
+    @media (max-width: 600px) {
+      .back-to-menu {
+        width: 90%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <h2>🔊 英会話学習アプリ</h2>
+    <p>英会話の学習をしよう！</p>
+    <!-- 実際のアプリのUIや機能をここに追加 -->
+  </div>
+
+  <!-- メニューに戻るボタン -->
+  <div class="back-to-menu">
+    <a href="index.html">
+      <i class="fas fa-home"></i>
+      <span>メニューに戻る</span>
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

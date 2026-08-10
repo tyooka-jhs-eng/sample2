@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "time", "meaning": "時間", "example": "Time passes quickly when you're having fun." },
+  { "id": "word2", "word": "day", "meaning": "日", "example": "Today is a sunny day." },
+  { "id": "word3", "word": "week", "meaning": "週", "example": "There are seven days in a week." },
+  { "id": "word4", "word": "month", "meaning": "月", "example": "My birthday is next month." },
+  { "id": "word5", "word": "year", "meaning": "年", "example": "This year is very special to me." },
+  { "id": "word6", "word": "morning", "meaning": "朝", "example": "I go jogging every morning." },
+  { "id": "word7", "word": "afternoon", "meaning": "午後", "example": "We have math class in the afternoon." },
+  { "id": "word8", "word": "evening", "meaning": "夕方", "example": "I read books in the evening." },
+  { "id": "word9", "word": "night", "meaning": "夜", "example": "The stars shine at night." },
+  { "id": "word10", "word": "season", "meaning": "季節", "example": "Spring is my favorite season." },
+  { "id": "word11", "word": "spring", "meaning": "春", "example": "Cherry blossoms bloom in spring." },
+  { "id": "word12", "word": "summer", "meaning": "夏", "example": "We go to the beach in summer." },
+  { "id": "word13", "word": "autumn", "meaning": "秋", "example": "Leaves turn red in autumn." },
+  { "id": "word14", "word": "fall", "meaning": "秋（米国英語）", "example": "Fall is a season of harvest." },
+  { "id": "word15", "word": "winter", "meaning": "冬", "example": "It often snows in winter." },
+  { "id": "word16", "word": "holiday", "meaning": "休日", "example": "We went hiking on the holiday." },
+  { "id": "word17", "word": "birthday", "meaning": "誕生日", "example": "Her birthday is in July." },
+  { "id": "word18", "word": "weekend", "meaning": "週末", "example": "I relax on the weekend." },
+  { "id": "word19", "word": "calendar", "meaning": "カレンダー", "example": "Check the calendar for the date." },
+  { "id": "word20", "word": "clock", "meaning": "時計", "example": "The clock shows three o'clock." }
+]

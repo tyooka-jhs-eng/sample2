@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "rice", "meaning": "ごはん", "example": "I eat rice every day." },
+  { "id": "word2", "word": "bread", "meaning": "パン", "example": "She had bread for breakfast." },
+  { "id": "word3", "word": "meat", "meaning": "肉", "example": "He doesn't eat meat." },
+  { "id": "word4", "word": "fish", "meaning": "魚", "example": "We caught a big fish." },
+  { "id": "word5", "word": "egg", "meaning": "卵", "example": "I like boiled eggs." },
+  { "id": "word6", "word": "vegetable", "meaning": "野菜", "example": "Vegetables are good for your health." },
+  { "id": "word7", "word": "fruit", "meaning": "果物", "example": "Apples are my favorite fruit." },
+  { "id": "word8", "word": "apple", "meaning": "りんご", "example": "I eat an apple every day." },
+  { "id": "word9", "word": "banana", "meaning": "バナナ", "example": "Monkeys like bananas." },
+  { "id": "word10", "word": "orange", "meaning": "オレンジ", "example": "She drank orange juice." },
+  { "id": "word11", "word": "juice", "meaning": "ジュース", "example": "Would you like some juice?" },
+  { "id": "word12", "word": "water", "meaning": "水", "example": "I need a glass of water." },
+  { "id": "word13", "word": "milk", "meaning": "牛乳", "example": "Milk is good for your bones." },
+  { "id": "word14", "word": "tea", "meaning": "お茶", "example": "I drink green tea after meals." },
+  { "id": "word15", "word": "coffee", "meaning": "コーヒー", "example": "My father drinks coffee every morning." },
+  { "id": "word16", "word": "soup", "meaning": "スープ", "example": "This soup is hot and tasty." },
+  { "id": "word17", "word": "salad", "meaning": "サラダ", "example": "I made a vegetable salad." },
+  { "id": "word18", "word": "cake", "meaning": "ケーキ", "example": "We ate chocolate cake at the party." },
+  { "id": "word19", "word": "cookie", "meaning": "クッキー", "example": "She baked cookies for us." },
+  { "id": "word20", "word": "lunch", "meaning": "昼食", "example": "We had curry for lunch." }
+]

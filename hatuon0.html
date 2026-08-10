@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Pronunciation Practice Pro</title>
+
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    #question, #result { font-size: 20px; margin: 20px; }
+  </style>
+</head>
+
+
+<body>
+  <h2>🎙️ Pronunciation Practice Pro(発音 試作0）</h2>
+  <p id="question">Press the button to begin!</p>
+
+  <button onclick="startPractice()">Start Speaking</button>
+  <div id="result">Result will appear here...</div>
+
+  
+  <p>　</p>
+  <button onclick="showHistory()">End Session & View Results</button>
+  <div id="history"></div>
+
+
+
+
+  <script>
+    const phrases = [
+      "I would like a hamburger",
+      "Can you help me, please?",
+      "Where is the nearest station?",
+      "I have two brothers and one sister",
+      "This ice cream is delicious",
+      "Let’s go to the library tomorrow",
+      "My favorite subject is English",
+      "What time is it now?"
+    ];
+
+    let currentPhrase = "";
+
+    function startPractice() {
+      currentPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+      document.getElementById("question").innerText = `Say: "${currentPhrase}"`;
+
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        const expected = currentPhrase;
+        const score = calculateSimilarityScore(expected, transcript);
+        const resultDiv = document.getElementById("result");
+
+
+	saveStudentRecord("student_A", expected, score);
+
+
+        resultDiv.innerHTML = `
+          You said: "<strong>${transcript}</strong>"<br>
+          🎯 Similarity Score: <strong>${score}%</strong>
+        `;
+
+        if (score >= 90) {
+          resultDiv.innerHTML += "<br>✅ Excellent pronunciation!";
+        } else if (score >= 70) {
+          resultDiv.innerHTML += "<br>👍 Good, but try saying it more clearly.";
+        } else {
+          resultDiv.innerHTML += `<br>❌ Needs improvement. Try repeating: "<strong>${expected}</strong>"`;
+        }
+      };
+
+      recognition.onerror = function(event) {
+        document.getElementById("result").innerText = `Error: ${event.error}`;
+      };
+
+      recognition.start();
+    }
+
+    function calculateSimilarityScore(a, b) {
+      const distance = levenshteinDistance(a.toLowerCase(), b.toLowerCase());
+      const maxLength = Math.max(a.length, b.length);
+      return Math.round((1 - distance / maxLength) * 100);
+    }
+
+    function levenshteinDistance(a, b) {
+      const dp = Array.from({ length: a.length + 1 }, () =>
+        Array(b.length + 1).fill(0)
+      );
+      for (let i = 0; i <= a.length; i++) dp[i][0] = i;
+      for (let j = 0; j <= b.length; j++) dp[0][j] = j;
+
+      for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + cost
+          );
+        }
+      }
+      return dp[a.length][b.length];
+    }
+
+function saveStudentRecord(studentId, phrase, score) {
+  const record = {
+    phrase: phrase,
+    score: score,
+    date: new Date().toLocaleDateString()
+  };
+
+  let history = JSON.parse(localStorage.getItem(studentId)) || [];
+  history.push(record);
+  localStorage.setItem(studentId, JSON.stringify(history));
+}
+
+function showHistory() {
+  const studentId = "student_A"; // 必要に応じて名前入力フォームを作ることも可能
+  const history = JSON.parse(localStorage.getItem(studentId)) || [];
+  const container = document.getElementById("history");
+
+  if (history.length === 0) {
+    container.innerHTML = "<p>📭 No records found yet.</p>";
+    return;
+  }
+
+  let html = "<h3>📋 Your Practice History</h3><ul>";
+  history.forEach(entry => {
+    html += `<li><strong>${entry.date}</strong>: “${entry.phrase}” → <span style="color:blue;">${entry.score}%</span></li>`;
+  });
+  html += "</ul>";
+  container.innerHTML = html;
+}
+
+  </script>
+
+
+
+<!-- メニューに戻るためのボタン -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アプリ画面</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome（アイコン用） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .back-to-menu {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      border-radius: 30px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .back-to-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+    }
+
+    .back-to-menu i {
+      font-size: 1.2rem;
+      color: #4a90e2;
+    }
+
+    @media (max-width: 600px) {
+      .back-to-menu {
+        width: 90%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <h2>🔊 発音学習アプリ</h2>
+    <p>繰り返して発音の学習をしよう！</p>
+    <!-- 実際のアプリのUIや機能をここに追加 -->
+  </div>
+
+  <!-- メニューに戻るボタン -->
+  <div class="back-to-menu">
+    <a href="index.html">
+      <i class="fas fa-home"></i>
+      <span>メニューに戻る</span>
+    </a>
+  </div>
+
+
+
+
+
+</body>
+</html>

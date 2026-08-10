@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "father", "meaning": "父", "example": "My father works at a bank." },
+  { "id": "word2", "word": "mother", "meaning": "母", "example": "My mother cooks dinner every day." },
+  { "id": "word3", "word": "brother", "meaning": "兄・弟", "example": "I have a younger brother." },
+  { "id": "word4", "word": "sister", "meaning": "姉・妹", "example": "My sister is in high school." },
+  { "id": "word5", "word": "grandfather", "meaning": "祖父", "example": "My grandfather tells old stories." },
+  { "id": "word6", "word": "grandmother", "meaning": "祖母", "example": "My grandmother makes delicious soup." },
+  { "id": "word7", "word": "uncle", "meaning": "おじ", "example": "My uncle lives in Osaka." },
+  { "id": "word8", "word": "aunt", "meaning": "おば", "example": "My aunt is a nurse." },
+  { "id": "word9", "word": "cousin", "meaning": "いとこ", "example": "I play with my cousin on weekends." },
+  { "id": "word10", "word": "parent", "meaning": "親", "example": "Parents care for their children." },
+  { "id": "word11", "word": "child", "meaning": "子ども", "example": "The child is sleeping." },
+  { "id": "word12", "word": "baby", "meaning": "赤ちゃん", "example": "The baby is crying." },
+  { "id": "word13", "word": "friend", "meaning": "友達", "example": "I met my friend at the park." },
+  { "id": "word14", "word": "neighbor", "meaning": "近所の人", "example": "Our neighbor has a dog." },
+  { "id": "word15", "word": "classmate", "meaning": "クラスメート", "example": "My classmate helped me with homework." },
+  { "id": "word16", "word": "partner", "meaning": "相棒・仲間", "example": "He is my soccer partner." },
+  { "id": "word17", "word": "guest", "meaning": "客", "example": "We have a guest tonight." },
+  { "id": "word18", "word": "family", "meaning": "家族", "example": "My family is important to me." },
+  { "id": "word19", "word": "relationship", "meaning": "関係", "example": "They have a good relationship." },
+  { "id": "word20", "word": "group", "meaning": "グループ", "example": "We worked in a group." }
+]

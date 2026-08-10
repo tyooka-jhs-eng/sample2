@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "book", "meaning": "本", "example": "I read a book every night." },
+  { "id": "word2", "word": "pen", "meaning": "ペン", "example": "This pen is blue." },
+  { "id": "word3", "word": "desk", "meaning": "机", "example": "My desk is clean." },
+  { "id": "word4", "word": "chair", "meaning": "いす", "example": "He sat on the chair." },
+  { "id": "word5", "word": "bag", "meaning": "かばん", "example": "Her bag is heavy." },
+  { "id": "word6", "word": "door", "meaning": "ドア", "example": "Open the door, please." },
+  { "id": "word7", "word": "window", "meaning": "窓", "example": "The window is open." },
+  { "id": "word8", "word": "floor", "meaning": "床", "example": "The floor is clean." },
+  { "id": "word9", "word": "wall", "meaning": "壁", "example": "There is a picture on the wall." },
+  { "id": "word10", "word": "room", "meaning": "部屋", "example": "This is my room." },
+  { "id": "word11", "word": "school", "meaning": "学校", "example": "I go to school every day." },
+  { "id": "word12", "word": "student", "meaning": "生徒", "example": "She is a good student." },
+  { "id": "word13", "word": "teacher", "meaning": "先生", "example": "Our teacher is kind." },
+  { "id": "word14", "word": "class", "meaning": "授業", "example": "We have math class today." },
+  { "id": "word15", "word": "subject", "meaning": "科目", "example": "My favorite subject is English." },
+  { "id": "word16", "word": "homework", "meaning": "宿題", "example": "I finished my homework." },
+  { "id": "word17", "word": "test", "meaning": "試験", "example": "The test was difficult." },
+  { "id": "word18", "word": "answer", "meaning": "答え", "example": "He gave the right answer." },
+  { "id": "word19", "word": "question", "meaning": "質問", "example": "I asked a question." },
+  { "id": "word20", "word": "idea", "meaning": "考え", "example": "That's a great idea!" }
+]

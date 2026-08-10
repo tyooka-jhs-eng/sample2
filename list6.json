@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "trip", "meaning": "旅行", "example": "We went on a school trip to Kyoto." },
+  { "id": "word2", "word": "journey", "meaning": "旅", "example": "The journey took three hours." },
+  { "id": "word3", "word": "travel", "meaning": "旅行（すること）", "example": "I like to travel by train." },
+  { "id": "word4", "word": "tour", "meaning": "観光旅行", "example": "We joined a city tour." },
+  { "id": "word5", "word": "map", "meaning": "地図", "example": "I looked at the map to find the station." },
+  { "id": "word6", "word": "guide", "meaning": "案内人", "example": "The guide showed us around the museum." },
+  { "id": "word7", "word": "ticket", "meaning": "切符", "example": "I bought a train ticket." },
+  { "id": "word8", "word": "passport", "meaning": "パスポート", "example": "Don't forget your passport!" },
+  { "id": "word9", "word": "luggage", "meaning": "荷物", "example": "Her luggage was very heavy." },
+  { "id": "word10", "word": "station", "meaning": "駅", "example": "We met at the station." },
+  { "id": "word11", "word": "airport", "meaning": "空港", "example": "The airport was crowded." },
+  { "id": "word12", "word": "bus", "meaning": "バス", "example": "I take the bus to school." },
+  { "id": "word13", "word": "train", "meaning": "電車", "example": "The train was late." },
+  { "id": "word14", "word": "car", "meaning": "車", "example": "My father drives a small car." },
+  { "id": "word15", "word": "bicycle", "meaning": "自転車", "example": "I ride my bicycle every morning." },
+  { "id": "word16", "word": "subway", "meaning": "地下鉄", "example": "The subway is fast and cheap." },
+  { "id": "word17", "word": "taxi", "meaning": "タクシー", "example": "We took a taxi to the hotel." },
+  { "id": "word18", "word": "hotel", "meaning": "ホテル", "example": "We stayed at a nice hotel." },
+  { "id": "word19", "word": "souvenir", "meaning": "おみやげ", "example": "I bought a souvenir for my friend." },
+  { "id": "word20", "word": "reservation", "meaning": "予約", "example": "I made a reservation online." }
+]

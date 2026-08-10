@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "blackboard", "meaning": "黒板", "example": "The teacher wrote on the blackboard." },
+  { "id": "word2", "word": "chalk", "meaning": "チョーク", "example": "She used white chalk." },
+  { "id": "word3", "word": "eraser", "meaning": "消しゴム", "example": "I lost my eraser." },
+  { "id": "word4", "word": "notebook", "meaning": "ノート", "example": "This notebook is full." },
+  { "id": "word5", "word": "uniform", "meaning": "制服", "example": "We wear uniforms at school." },
+  { "id": "word6", "word": "bell", "meaning": "ベル", "example": "The bell rang at noon." },
+  { "id": "word7", "word": "library", "meaning": "図書館", "example": "I study in the library." },
+  { "id": "word8", "word": "gym", "meaning": "体育館", "example": "We played basketball in the gym." },
+  { "id": "word9", "word": "principal", "meaning": "校長", "example": "The principal gave a speech." },
+  { "id": "word10", "word": "classroom", "meaning": "教室", "example": "Our classroom is on the second floor." },
+  { "id": "word11", "word": "grade", "meaning": "学年", "example": "He is in the ninth grade." },
+  { "id": "word12", "word": "club", "meaning": "部活動", "example": "I joined the soccer club." },
+  { "id": "word13", "word": "schedule", "meaning": "時間割", "example": "My schedule is busy today." },
+  { "id": "word14", "word": "exam", "meaning": "試験", "example": "The exam starts at 10 a.m." },
+  { "id": "word15", "word": "score", "meaning": "得点", "example": "I got a high score." },
+  { "id": "word16", "word": "subject", "meaning": "科目", "example": "Math is a difficult subject." },
+  { "id": "word17", "word": "lesson", "meaning": "授業", "example": "Today's lesson is about history." },
+  { "id": "word18", "word": "questionnaire", "meaning": "アンケート", "example": "We answered a questionnaire." },
+  { "id": "word19", "word": "announcement", "meaning": "お知らせ", "example": "There was an announcement after lunch." },
+  { "id": "word20", "word": "assembly", "meaning": "集会", "example": "We had a school assembly." }
+]

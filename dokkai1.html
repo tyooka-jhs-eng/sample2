@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>長文読解サンプル</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f0f8ff;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .section {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .quiz {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📖 長文読解サンプル</h1>
+
+  <div class="section" id="reading-section">
+    <h2>英文</h2>
+    <p id="reading-text">
+      Tom is a junior high school student. He likes science and wants to be a doctor in the future. Every day, he studies hard and helps his friends with their homework.
+    </p>
+    <button onclick="readText()">🔊 音読する</button>
+  </div>
+
+  <div class="section" id="quiz-section">
+    <h2>理解クイズ</h2>
+    <div class="quiz">
+      <p>① What does Tom like?</p>
+      <select id="q1">
+        <option value="">選択してください</option>
+        <option value="math">Math</option>
+        <option value="science">Science</option>
+        <option value="music">Music</option>
+      </select>
+    </div>
+    <div class="quiz">
+      <p>② What does Tom want to be?</p>
+      <select id="q2">
+        <option value="">選択してください</option>
+        <option value="teacher">A teacher</option>
+        <option value="doctor">A doctor</option>
+        <option value="engineer">An engineer</option>
+      </select>
+    </div>
+    <div class="quiz">
+      <p>③ What does Tom do every day?</p>
+      <select id="q3">
+        <option value="">選択してください</option>
+        <option value="play games">Play games</option>
+        <option value="study and help friends">Study and help friends</option>
+        <option value="watch TV">Watch TV</option>
+      </select>
+    </div>
+    <button onclick="checkAnswers()">✅ 答え合わせ</button>
+    <p id="result"></p>
+  </div>
+
+  <div class="section" id="summary-section">
+    <h2>要約・感想を書く</h2>
+    <textarea id="summary" placeholder="この文章の内容や感想を書いてください。"></textarea>
+    <button onclick="saveSummary()">💾 保存する</button>
+    <p id="save-message"></p>
+  </div>
+
+  <script>
+    function readText() {
+      const text = document.getElementById("reading-text").innerText;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      speechSynthesis.speak(utterance);
+    }
+
+    function checkAnswers() {
+      const q1 = document.getElementById("q1").value;
+      const q2 = document.getElementById("q2").value;
+      const q3 = document.getElementById("q3").value;
+
+      let score = 0;
+      if (q1 === "science") score++;
+      if (q2 === "doctor") score++;
+      if (q3 === "study and help friends") score++;
+
+      document.getElementById("result").innerText = `正解数：${score} / 3`;
+    }
+
+    function saveSummary() {
+      const text = document.getElementById("summary").value;
+      localStorage.setItem("readingSummary", text);
+      document.getElementById("save-message").innerText = "保存しました！";
+    }
+  </script>
+
+
+<!-- メニューに戻るためのボタン -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アプリ画面</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome（アイコン用） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .back-to-menu {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      border-radius: 30px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .back-to-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+    }
+
+    .back-to-menu i {
+      font-size: 1.2rem;
+      color: #4a90e2;
+    }
+
+    @media (max-width: 600px) {
+      .back-to-menu {
+        width: 90%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <h2>🔊 英長文読解アプリ</h2>
+    <p>英文読解に慣れよう！</p>
+    <!-- 実際のアプリのUIや機能をここに追加 -->
+  </div>
+
+  <!-- メニューに戻るボタン -->
+  <div class="back-to-menu">
+    <a href="index.html">
+      <i class="fas fa-home"></i>
+      <span>メニューに戻る</span>
+    </a>
+  </div>
+
+
+
+
+
+
+
+</body>
+</html>

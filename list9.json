@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "culture", "meaning": "文化", "example": "I want to learn about Japanese culture." },
+  { "id": "word2", "word": "tradition", "meaning": "伝統", "example": "We have a tradition of eating mochi on New Year's Day." },
+  { "id": "word3", "word": "festival", "meaning": "祭り", "example": "The summer festival was exciting." },
+  { "id": "word4", "word": "custom", "meaning": "習慣", "example": "Taking off shoes is a Japanese custom." },
+  { "id": "word5", "word": "history", "meaning": "歴史", "example": "We studied world history in class." },
+  { "id": "word6", "word": "society", "meaning": "社会", "example": "We live in a peaceful society." },
+  { "id": "word7", "word": "law", "meaning": "法律", "example": "We must follow the law." },
+  { "id": "word8", "word": "rule", "meaning": "規則", "example": "There are many school rules." },
+  { "id": "word9", "word": "government", "meaning": "政府", "example": "The government made a new plan." },
+  { "id": "word10", "word": "politics", "meaning": "政治", "example": "He is interested in politics." },
+  { "id": "word11", "word": "economy", "meaning": "経済", "example": "The economy is growing." },
+  { "id": "word12", "word": "news", "meaning": "ニュース", "example": "I watch the news every morning." },
+  { "id": "word13", "word": "media", "meaning": "メディア", "example": "Social media is popular among students." },
+  { "id": "word14", "word": "art", "meaning": "芸術", "example": "She loves modern art." },
+  { "id": "word15", "word": "music", "meaning": "音楽", "example": "Music makes people happy." },
+  { "id": "word16", "word": "dance", "meaning": "ダンス", "example": "They performed a traditional dance." },
+  { "id": "word17", "word": "language", "meaning": "言語", "example": "English is an international language." },
+  { "id": "word18", "word": "religion", "meaning": "宗教", "example": "Religion is part of many cultures." },
+  { "id": "word19", "word": "ceremony", "meaning": "式典", "example": "We had a graduation ceremony." },
+  { "id": "word20", "word": "community", "meaning": "地域社会", "example": "I joined a local community group." }
+]

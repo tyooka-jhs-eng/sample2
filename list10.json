@@ -1,0 +1,22 @@
+[
+  { "id": "word1", "word": "computer", "meaning": "コンピューター", "example": "I use a computer to write reports." },
+  { "id": "word2", "word": "internet", "meaning": "インターネット", "example": "The internet is useful for studying." },
+  { "id": "word3", "word": "email", "meaning": "電子メール", "example": "I sent an email to my teacher." },
+  { "id": "word4", "word": "phone", "meaning": "電話", "example": "He answered the phone quickly." },
+  { "id": "word5", "word": "camera", "meaning": "カメラ", "example": "She took a photo with her camera." },
+  { "id": "word6", "word": "music", "meaning": "音楽", "example": "I listen to music every night." },
+  { "id": "word7", "word": "movie", "meaning": "映画", "example": "We watched a movie at home." },
+  { "id": "word8", "word": "game", "meaning": "ゲーム", "example": "This game is very popular." },
+  { "id": "word9", "word": "sport", "meaning": "スポーツ", "example": "Soccer is my favorite sport." },
+  { "id": "word10", "word": "team", "meaning": "チーム", "example": "Our team won the match." },
+  { "id": "word11", "word": "player", "meaning": "選手", "example": "He is a baseball player." },
+  { "id": "word12", "word": "event", "meaning": "行事", "example": "The school event was fun." },
+  { "id": "word13", "word": "party", "meaning": "パーティー", "example": "We had a birthday party." },
+  { "id": "word14", "word": "gift", "meaning": "贈り物", "example": "I got a gift from my friend." },
+  { "id": "word15", "word": "message", "meaning": "メッセージ", "example": "He left a message on my phone." },
+  { "id": "word16", "word": "question", "meaning": "質問", "example": "She asked a good question." },
+  { "id": "word17", "word": "answer", "meaning": "答え", "example": "I knew the answer." },
+  { "id": "word18", "word": "problem", "meaning": "問題", "example": "We solved the problem together." },
+  { "id": "word19", "word": "solution", "meaning": "解決策", "example": "That is a smart solution." },
+  { "id": "word20", "word": "idea", "meaning": "考え", "example": "She had a great idea." }
+]
