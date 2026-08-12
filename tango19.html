@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>英単語カード学習</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+      background-color: #eef2f7;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 250px;
+      height: 180px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .flip-card-front {
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    .flip-card-back {
+      background-color: #4a90e2;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .controls button {
+      margin: 5px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .speak-btn { background-color: #f5a623; color: white; }
+    .review-btn { background-color: #7ed321; color: white; }
+
+    .history-btn {
+      background-color: #ffffff;
+      border-radius: 30px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>🎓 英単語カード学習</h2>
+
+<select id="list-selector" onchange="renderCards()">
+  <option value="list1.json">リスト1：基本名詞</option>
+  <option value="list2.json">リスト2：学校生活</option>
+  <option value="list3.json">自然・環境</option>
+  <option value="list4.json">社会・文化</option>
+  <option value="list5.json">旅行・交通</option>
+  <option value="list6.json">食べ物・健康</option>
+  <option value="list7.json">感情・性格</option>
+  <option value="list8.json">動物・植物</option>
+  <option value="list9.json">時間・季節</option>
+  <option value="list10.json">その他</option>
+</select>
+
+<div class="card-container" id="card-container"></div>
+
+<!-- ★ 発音チェックUI（上書きされる領域） -->
+<div id="speechInputArea" style="margin: 20px;"></div>
+
+<!-- ★ テスト結果ボタン（上書きされない独立領域） -->
+<div id="resultButtonArea" style="margin-top: 30px;">
+  <button class="history-btn" onclick="showHistory()">📊 テスト結果を見る</button>
+</div>
+
+<script>
+let vocabulary = [];
+
+/* -----------------------------
+   shuffle 修正版
+----------------------------- */
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+/* -----------------------------
+   ブラウザ判定
+----------------------------- */
+function getSpeechMode() {
+  const canUseSpeechAPI =
+    ('SpeechRecognition' in window) || ('webkitSpeechRecognition' in window);
+
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  const isIpad =
+    navigator.userAgent.includes("iPad") ||
+    (navigator.userAgent.includes("Mac") && navigator.maxTouchPoints > 1);
+
+  if (isIpad || isSafari) return "ipad-input";
+  if (canUseSpeechAPI) return "web-speech";
+  return "none";
+}
+
+/* -----------------------------
+   Web Speech API
+----------------------------- */
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = null;
+
+if (SpeechRecognition) {
+  recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+}
+
+/* -----------------------------
+   読み上げ判定
+----------------------------- */
+function checkPronunciation(correctWord) {
+  const mode = getSpeechMode();
+
+  if (mode === "web-speech") {
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      let spoken = event.results[0][0].transcript.toLowerCase();
+      spoken = spoken.replace(/[.,!?]/g, "").trim();
+
+      const correct = correctWord.toLowerCase();
+
+      if (spoken.includes(correct)) {
+        alert("🎉 正しく発音できました！");
+        saveProgress(correctWord);
+      } else {
+        alert(`❌ もう一度チャレンジ！\n聞こえた単語: ${spoken}`);
+      }
+    };
+  }
+
+  else if (mode === "ipad-input") {
+    const spoken = document.getElementById("speechInput").value.toLowerCase().trim();
+    const correct = correctWord.toLowerCase();
+
+    if (spoken.includes(correct)) {
+      alert("🎉 正しく発音できました！");
+      saveProgress(correctWord);
+    } else {
+      alert(`❌ もう一度チャレンジ！\n入力された単語: ${spoken}`);
+    }
+  }
+
+  else {
+    alert("音声入力が利用できません");
+  }
+}
+
+/* -----------------------------
+   モード別 UI
+----------------------------- */
+function setupSpeechUI(currentWord) {
+  const mode = getSpeechMode();
+  const area = document.getElementById("speechInputArea");
+
+  if (mode === "ipad-input") {
+    area.innerHTML = `
+      <p>🎤 iPad音声入力モード</p>
+      <input id="speechInput" type="text" placeholder="ここに音声入力してください">
+      <button onclick="checkPronunciation('${currentWord}')">判定する</button>
+    `;
+  }
+
+  else if (mode === "web-speech") {
+    area.innerHTML = `
+      <p>🎤 自動音声認識モード</p>
+      <button onclick="checkPronunciation('${currentWord}')">発音チェック</button>
+    `;
+  }
+
+  else {
+    area.innerHTML = `
+      <p>⌨ テキスト入力モード</p>
+      <input id="speechInput" type="text" placeholder="単語を入力してください">
+      <button onclick="checkPronunciation('${currentWord}')">判定する</button>
+    `;
+  }
+}
+
+/* -----------------------------
+   JSON読み込み
+----------------------------- */
+async function loadVocabulary() {
+  const selectedFile = document.getElementById("list-selector").value;
+  const response = await fetch(selectedFile);
+  return await response.json();
+}
+
+/* -----------------------------
+   カード表示
+----------------------------- */
+async function renderCards() {
+  vocabulary = await loadVocabulary();
+  const container = document.getElementById("card-container");
+  container.innerHTML = "";
+
+  const shuffled = shuffle([...vocabulary]);
+
+  shuffled.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "flip-card";
+    card.onclick = () => card.classList.toggle("flipped");
+
+    card.innerHTML = `
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <strong>${item.word}</strong>
+          <div class="controls">
+            <button class="speak-btn" onclick="event.stopPropagation(); speakExample('${item.example}')">🔊 例文</button>
+            <button onclick="event.stopPropagation(); checkPronunciation('${item.word}')">🎤 発音チェック</button>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <strong>${item.meaning}</strong>
+          <small>${item.example}</small>
+          <div class="controls">
+            <button class="review-btn" onclick="event.stopPropagation(); saveProgress('${item.id}')">✅ 覚えた</button>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+
+    setupSpeechUI(item.word);
+  });
+}
+
+/* -----------------------------
+   例文読み上げ
+----------------------------- */
+function speakExample(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  speechSynthesis.speak(utterance);
+}
+
+/* -----------------------------
+   学習記録
+----------------------------- */
+function saveProgress(wordId) {
+  const key = "learnedWords";
+  const learned = JSON.parse(localStorage.getItem(key)) || {};
+  const now = new Date();
+
+  if (!learned[wordId]) {
+    learned[wordId] = { count: 1, timestamps: [now.toISOString()] };
+  } else {
+    learned[wordId].count += 1;
+    learned[wordId].timestamps.push(now.toISOString());
+  }
+
+  localStorage.setItem(key, JSON.stringify(learned));
+  alert("記録しました！");
+}
+
+window.onload = () => {
+  renderCards();
+};
+</script>
+
+</body>
+</html>
