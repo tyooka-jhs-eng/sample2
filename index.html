@@ -88,6 +88,15 @@
       font-weight: bold;
     }
 
+    .settings .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: -0.3rem;
+      margin-bottom: 0.3rem;
+    }
+
     .settings select,
     .settings input[type="range"] {
       width: 100%;
@@ -113,7 +122,7 @@
 </head>
 <body>
 
-  <header>豊岡中　英語学習アプリ（試作2）</header>
+  <header>豊岡中　英語学習アプリ（試作3）</header>
 
   <div class="menu-container">
     <div class="card" onclick="location.href='tango60.html'">
@@ -144,11 +153,23 @@
   <div class="settings">
     <h3>🔧 初期設定（音声再生）</h3>
 
-    <label for="rate">話速（0.5〜2.0）</label>
-    <input type="range" id="rate" min="0.5" max="2.0" step="0.1" value="1.0">
+    <!-- ★★★ 話速（教育向けUI） ★★★ -->
+    <label for="rate">話速</label>
+    <div class="range-labels">
+      <span>ゆっくり</span>
+      <span>ふつう</span>
+      <span>はやい</span>
+    </div>
+    <input type="range" id="rate" min="0.8" max="1.2" step="0.05" value="1.0">
 
-    <label for="pitch">声の高さ（0.5〜2.0）</label>
-    <input type="range" id="pitch" min="0.5" max="2.0" step="0.1" value="1.0">
+    <!-- ★★★ 声の高さ（教育向けUI） ★★★ -->
+    <label for="pitch">声の高さ</label>
+    <div class="range-labels">
+      <span>低い</span>
+      <span>ふつう</span>
+      <span>高い</span>
+    </div>
+    <input type="range" id="pitch" min="0.8" max="1.2" step="0.05" value="1.0">
 
     <label for="voice">声の種類（端末依存）</label>
     <select id="voice"></select>
@@ -157,13 +178,9 @@
   </div>
 
   <div class="settings">
-    <h3>🔧 学習データ リセット　</h3>
-
-　　<button onclick="resetLearningData()">学習結果をリセット</button>
- 
+    <h3>🔧 学習データ リセット</h3>
+    <button onclick="resetLearningData()">学習結果をリセット</button>
   </div>
-
-
 
   <script>
     let voices = [];
@@ -180,7 +197,6 @@
         voiceSelect.appendChild(option);
       });
 
-      // 保存済みの設定を反映
       const savedVoice = localStorage.getItem("voiceIndex");
       if (savedVoice) voiceSelect.value = savedVoice;
     }
@@ -201,13 +217,12 @@
       speechSynthesis.speak(utterance);
     }
 
- // ★★★ 学習結果リセット機能（追加部分） ★★★
-  function resetLearningData() {
-    if (confirm("本当に学習結果をリセットしますか？")) {
-      localStorage.removeItem("learnedWords");
-      alert("学習結果をリセットしました。");
+    function resetLearningData() {
+      if (confirm("本当に学習結果をリセットしますか？")) {
+        localStorage.removeItem("learnedWords");
+        alert("学習結果をリセットしました。");
+      }
     }
-  }
 
     speechSynthesis.onvoiceschanged = populateVoiceList;
     window.onload = populateVoiceList;
