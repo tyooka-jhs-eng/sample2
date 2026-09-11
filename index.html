@@ -185,6 +185,28 @@
   <script>
     let voices = [];
 
+// ★★★ iPad判定 ★★★
+  function isIpad() {
+    return /iPad|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+  }
+
+  // ★★★ iPad向け：高品質音声を自動選択 ★★★
+  function selectBestIpadVoice() {
+    if (!isIpad()) return null;
+
+    // iPadの高品質音声候補
+    const priorityNames = ["Samantha", "Alex", "Ava", "Allison", "Susan", "Enhanced"];
+
+    for (const name of priorityNames) {
+      const v = voices.find(voice => voice.name.includes(name));
+      if (v) return v;
+    }
+
+    // 最後の手段：英語の中で最も品質が高そうなもの
+    return voices.find(v => v.lang === "en-US") || null;
+  }
+
+
     function populateVoiceList() {
       voices = speechSynthesis.getVoices();
       const voiceSelect = document.getElementById("voice");
@@ -197,9 +219,24 @@
         voiceSelect.appendChild(option);
       });
 
-      const savedVoice = localStorage.getItem("voiceIndex");
-      if (savedVoice) voiceSelect.value = savedVoice;
+// 保存済み設定があれば反映
+    const savedVoice = localStorage.getItem("voiceIndex");
+    if (savedVoice) {
+      voiceSelect.value = savedVoice;
+      return;
+
     }
+
+    // ★★★ 初回のみ：iPadなら高品質音声を自動選択 ★★★
+    const bestVoice = selectBestIpadVoice();
+    if (bestVoice) {
+      const index = voices.indexOf(bestVoice);
+      if (index >= 0) {
+        voiceSelect.value = index;
+      }
+    }
+  }
+
 
     function saveSettings() {
       const rate = document.getElementById("rate").value;
